@@ -4,9 +4,9 @@ html
         title {title}
         link(rel="stylesheet", href="/css/style.css")
     body
-        .form-wrapper
+        .container
             h1 Board Games
-            a(href="/update-boardgames") Add New Boardgame
+            a(href="/update-cobj") Add to this table
             br
             if boardGames.length > 0
                 br
@@ -14,14 +14,12 @@ html
                     thead
                         tr
                             th Name
-                            th Color
-                            th Nickname
+                            th Type
+                            th Thematic
                     tbody
                       each boardGame in boardGames
                           tr
-                              td
-                                  a(href="/update-boardgames?id=" + boardGame.id)
-                                      p #{boardGame.properties.name}
+                              td= boardGame.properties.name
                               td= boardGame.properties.type
                               td= boardGame.properties.thematic
             else

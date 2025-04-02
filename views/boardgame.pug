@@ -4,14 +4,13 @@ html(lang="en")
         title #{title}
         link(rel="stylesheet", href="/css/style.css")
     body
-        .form-wrapper
-            a(href="/") Back
-            h1 BoardGame: #{name}
-                h6 Type: #{type}
-            br
-            h3 Thematic: #{thematic}
-            br
+        .container
+            a(href="/") Return to the homepage
             form(method="POST")
-                label(for="newThematic") New Thematic
-                input(type="text" name="newThematic" required)
+                label(for="name") Name
+                input(type="text" name="name" required)
+                label(for="type") Type
+                input(type="text" name="type" required)
+                label(for="thematic") Thematic
+                input(type="text" name="thematic" required)
                 input(type="submit" value="Submit")
