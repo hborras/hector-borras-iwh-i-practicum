@@ -1,0 +1,22 @@
+doctype html
+html
+    head
+        title Board Game manager
+    body
+        h1 Board Games
+        a(href="/update-cobj") Add New Boardgame
+        if boardGames.length > 0
+            table(border="1")
+                thead
+                    tr
+                        th Name
+                        th Color
+                        th Nickname
+                tbody
+                  each boardGame in boardGames
+                      tr
+                          td= boardGame.properties.name
+                          td= boardGame.properties.type
+                          td= boardGame.properties.thematic
+        else
+            p No records found.
