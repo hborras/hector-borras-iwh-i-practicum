@@ -1,22 +1,28 @@
 doctype html
 html
     head
-        title Board Game manager
+        title {title}
+        link(rel="stylesheet", href="/css/style.css")
     body
-        h1 Board Games
-        a(href="/update-cobj") Add New Boardgame
-        if boardGames.length > 0
-            table(border="1")
-                thead
-                    tr
-                        th Name
-                        th Color
-                        th Nickname
-                tbody
-                  each boardGame in boardGames
-                      tr
-                          td= boardGame.properties.name
-                          td= boardGame.properties.type
-                          td= boardGame.properties.thematic
-        else
-            p No records found.
+        .form-wrapper
+            h1 Board Games
+            a(href="/update-boardgames") Add New Boardgame
+            br
+            if boardGames.length > 0
+                br
+                table(border="1")
+                    thead
+                        tr
+                            th Name
+                            th Color
+                            th Nickname
+                    tbody
+                      each boardGame in boardGames
+                          tr
+                              td
+                                  a(href="/update-boardgames?id=" + boardGame.id)
+                                      p #{boardGame.properties.name}
+                              td= boardGame.properties.type
+                              td= boardGame.properties.thematic
+            else
+                p No records found.

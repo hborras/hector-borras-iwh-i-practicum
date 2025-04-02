@@ -23,6 +23,7 @@ app.get('/', async (req, res) => {
         const resp = await axios.get(boardGames, { headers });
         const data = resp.data;
         res.render('home', {
+            title: 'Board Games Manager',
             boardGames: data.results
         });
     } catch (error) {
@@ -32,7 +33,30 @@ app.get('/', async (req, res) => {
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
-// * Code for Route 2 goes here
+app.get('/update-boardgames', async(req, res) => {
+    const id = req.query.id;
+
+    const getBoardgame = `https://api.hubapi.com/crm/v3/objects/2-141069906/${id}?properties=name,type,thematic`;
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+    try {
+        const response = await axios.get(getBoardgame, { headers });
+        const data = response.data;
+
+        res.render('boardgame',
+          {
+              title: 'Update Board Game',
+              name: data.properties.name,
+              type: data.properties.type,
+              thematic: data.properties.thematic,
+          });
+
+    } catch(err) {
+        console.error(err);
+    }
+});
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
